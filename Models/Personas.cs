@@ -12,7 +12,9 @@ namespace RegistroPersona.Models
         public int PersonaId { get; set; }
         [Required(ErrorMessage ="El campo nombres esta vacio ")]
         public string Nombres { get; set; }
+        [Required(ErrorMessage = "El campo Telefono esta vacio ")] 
         public string Telefono { get; set; }
+        [Required(ErrorMessage = "El campo Cedula esta vacio ")] 
         public string Cedula { get; set; }
         [Required(ErrorMessage = "Este campo Direccion no puede estar vacio.")] 
         public string Direccion { get; set; }
