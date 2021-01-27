@@ -91,6 +91,7 @@
     protected override void OnInitialized()
     {
         Nuevo();
+        Limpiar();
     }
 
     public async void Buscar()
@@ -119,7 +120,7 @@
         }
         else
         {
-            toast.ShowError("No se logró guardar el registro.");
+            toast.ShowError("No se pudo guardar el registro.");
         }
     }
     public async void Eliminar()
@@ -131,7 +132,7 @@
         }
         else
         {
-            toast.ShowError("No se logró eliminar el registro.");
+            toast.ShowError("No se pudo eliminar el registro.");
         }
     }
     public void Limpiar()
