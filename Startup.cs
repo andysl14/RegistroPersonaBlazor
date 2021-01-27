@@ -32,12 +32,14 @@ namespace RegistroPersona
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddTransient<PersonasBLL>();
             services.AddSingleton<WeatherForecastService>();
             services.AddBlazoredToast();
             services.AddDbContext<Contexto>(options =>
                 options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
-                
+
+            //Inyectar Las BLL
+            services.AddTransient<PersonasBLL>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
