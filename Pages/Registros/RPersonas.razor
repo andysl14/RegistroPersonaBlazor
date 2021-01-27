@@ -1,0 +1,143 @@
+﻿<h3>Registro Personas</h3>
+
+@page "/Persona"
+@page "/Persona/{PersonaId:int}"
+
+
+
+
+@inject IToastService toast
+
+<EditForm Model="Persona" OnValidSubmit="Guardar">
+    <DataAnnotationsValidator />
+
+    <div class="card">
+        <div class="card-header">
+            <h3>Registro de Personas</h3>
+        </div>
+        <div class="card-body">
+            <form>
+                <div class="form-row align-items-center">
+                    <div class="col">
+                        <div class="form-group">
+                            <label>Persona Id</label>
+                            <div class="input-group">
+                                <InputNumber @bind-Value="Persona.PersonaId" class="form-control col-4" />
+                                <div class="input-group-append">
+                                    <button type="button" class="btn btn-primary input-group-text" @onclick="Buscar">Buscar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @*Nombres*@
+                <div class="form-group">
+                    <label>Nombres</label>
+                    <InputText @bind-Value="Persona.Nombres" class="form-control" />
+                    <ValidationMessage For="@(() => Persona.Nombres)" />
+                </div>
+
+                @*Telefono*@
+                <div class="form-group">
+                    <label>Teléfono</label>
+                    <InputText @bind-Value="Persona.Telefono"
+                               class="form-control" />
+                    <ValidationMessage For="@(() => Persona.Telefono)" />
+                </div>
+
+                @*Cedula*@
+                <div class="form-group">
+                    <label>Cédula</label>
+                    <InputText @bind-Value="Persona.Cedula" class="form-control" />
+                    <ValidationMessage For="@(() => Persona.Cedula)" />
+                </div>
+
+                @*Dirección*@
+                <div class="form-group">
+                    <label>Dirección</label>
+                    <InputText @bind-Value="Persona.Direccion" class="form-control" />
+                    <ValidationMessage For="@(() => Persona.Direccion)" />
+                </div>
+
+                @*FechaNacimiento*@
+                <div class="form-group">
+                    <label>Fecha</label>
+                    <InputDate @bind-Value="Persona.Fecha" class="form-control" />
+                    <ValidationMessage For="@(() => Persona.Fecha)" />
+                </div>
+            </form>
+        </div>
+        <div class="card-footer">
+            <div class="form-group text-center" display: inline-block>
+                <button type="button" class="btn btn-lg btn-primary" @onclick="Nuevo">Nuevo</button>
+                <button type="submit" class="btn btn-lg btn-success">Guardar</button>
+                <button type="button" class="btn btn-lg btn-danger" @onclick="Eliminar">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</EditForm>
+
+@code {
+
+    [Inject]
+    private PersonasBLL PersonasBLL { get; set; }
+
+    [Parameter]
+    public int PersonaId { get; set; }
+
+    Personas Persona = new Personas();
+
+    protected override void OnInitialized()
+    {
+        Nuevo();
+    }
+
+    public async void Buscar()
+    {
+        var registro = await PersonasBLL.Buscar(Persona.PersonaId);
+        if (registro != null)
+        {
+            this.Persona = registro;
+        }
+        else
+        {
+            toast.ShowInfo("No se encontró el registro.");
+        }
+    }
+    public void Nuevo()
+    {
+        Limpiar();
+    }
+    public async void Guardar()
+    {
+
+        if (await PersonasBLL.Guardar(Persona))
+        {
+            toast.ShowSuccess("Guardado");
+            Limpiar();
+        }
+        else
+        {
+            toast.ShowError("No se logró guardar el registro.");
+        }
+    }
+    public async void Eliminar()
+    {
+        if (await PersonasBLL.Eliminar(Persona.PersonaId))
+        {
+            toast.ShowSuccess("Eliminado");
+            Limpiar();
+        }
+        else
+        {
+            toast.ShowError("No se logró eliminar el registro.");
+        }
+    }
+    public void Limpiar()
+    {
+        this.Persona = new Personas();
+    }
+
+
+}
