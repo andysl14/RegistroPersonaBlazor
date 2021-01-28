@@ -18,8 +18,8 @@ namespace RegistroPersona.Models
         public string Cedula { get; set; }
         [Required(ErrorMessage = "Este campo Direccion no puede estar vacio.")] 
         public string Direccion { get; set; }
-        [Required(ErrorMessage ="El campo fecha esta vacio")]
-        public DateTime Fecha { get; set; }
+        [Required(ErrorMessage = "El campo fecha esta vacio")]
+        public DateTime Fecha { get; set; } = DateTime.Now;
 
     }
 }
