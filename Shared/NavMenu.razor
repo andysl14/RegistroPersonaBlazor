@@ -1,9 +1,14 @@
-﻿<div class="top-row pl-4 navbar navbar-dark">
+﻿
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div class="top-row pl-4 navbar navbar-dark">
     <a class="navbar-brand" href="">RegistroPersona</a>
     <button class="navbar-toggler" @onclick="ToggleNavMenu">
         <span class="navbar-toggler-icon"></span>
     </button>
 </div>
+
+
 
 <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
     <ul class="nav flex-column">
@@ -21,7 +26,7 @@
 
         <li class="nav-item px-3">
             <NavLink class="nav-link" href="Persona">
-                <span class="oi oi-plus" aria-hidden="true"></span> Registro Personas
+                <i class="fa fa-fw fa-user" aria-hidden="true"></i> Registro Personas
             </NavLink>
         </li>
 
