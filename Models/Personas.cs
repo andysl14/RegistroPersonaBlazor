@@ -21,5 +21,6 @@ namespace RegistroPersona.Models
         [Required(ErrorMessage = "El campo fecha esta vacio")]
         public DateTime Fecha { get; set; } = DateTime.Now;
 
+
     }
 }

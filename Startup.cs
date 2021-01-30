@@ -39,6 +39,7 @@ namespace RegistroPersona
 
             //Inyectar Las BLL
             services.AddTransient<PersonasBLL>();
+            services.AddTransient<PrestamosBLL>();
 
         }
 
