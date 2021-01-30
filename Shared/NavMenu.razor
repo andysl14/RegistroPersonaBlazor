@@ -1,5 +1,5 @@
 ﻿
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
 <div class="top-row pl-4 navbar navbar-dark">
     <a class="navbar-brand" href="">RegistroPersona</a>
@@ -17,30 +17,39 @@
                 <span class="oi oi-home" aria-hidden="true"></span> Home
             </NavLink>
         </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="oi oi-plus" aria-hidden="true"></span> Counter
-            </NavLink>
-        </li>
-
 
         <li class="nav-item px-3">
-            <NavLink class="nav-link" href="Persona">
-                <i class="fa fa-fw fa-user" aria-hidden="true"></i> Registro Personas
+            <NavLink class="nav-link" href="" @onclick="() =>expandSubMenu = !expandSubMenu">
+                <span class=" oi oi-folder" aria-hidden="true"></span> Registros
             </NavLink>
-        </li>
 
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="fetchdata">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
-            </NavLink>
+            @if (expandSubMenu)
+            {
+                <ul class="nav flex-column">
+                    <li class="nav-item px-2">
+                        <NavLink class="nav-link" href="Persona">
+                            <span class=" oi oi-person px-1" aria-hidden="true"></span> Registrar Personas
+                        </NavLink>
+                    </li>
+
+                    <li class="nav-item px-2">
+                        <NavLink class="nav-link" href="">
+                            <span class=" oi oi-dollar px-2" aria-hidden="true"></span> Registrar Prestamos
+                        </NavLink>
+                    </li>
+                </ul>
+                
+            }
+
         </li>
+        
     </ul>
 
 </div>
 
 @code {
     private bool collapseNavMenu = true;
+    private bool expandSubMenu;
 
     private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
 

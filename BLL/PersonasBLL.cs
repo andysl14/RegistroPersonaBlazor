@@ -83,6 +83,7 @@ namespace RegistroPersona.BLL
 
             try
             {
+                //where(p => p.PersonaId==Id).AsNoTracking.FirstOrDefaultAsync();
                 persona = await _dbContext.Personas.FindAsync(id);
             }
             catch (Exception)
